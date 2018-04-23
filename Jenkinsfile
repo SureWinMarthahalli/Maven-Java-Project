@@ -12,6 +12,8 @@ node {
 
        stage('Compiling'){
 	       
+         sh 'export M3_HOME=/opt/Maven/apache-maven-3.5.3'
+	 sh 'export PATH=$M3_HOME/bin:$PATH'
 
           sh 'mvn clean install'
 	       }
