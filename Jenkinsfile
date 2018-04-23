@@ -11,23 +11,30 @@ node {
        }
 
        stage('Compiling'){
+	       steps{
 	       withMaven(maven : 'maven 3.5.3')
 
           sh 'mvn clean install'
-       }
+	       }}
 	   
       stage('Sonar') {
+	      steps{
+	       withMaven(maven : 'maven 3.5.3')
                     //add stage sonar
                     sh 'mvn sonar:sonar'
-                }
+	      }}
 	    
 	stage('Checkstyle') {
+		steps{
+	       withMaven(maven : 'maven 3.5.3')
                     sh 'mvn checkstyle:checkstyle'
-                }
+		}}
 
                stage('PMD') {
+		       steps{
+	       withMaven(maven : 'maven 3.5.3')
                     sh 'mvn pmd:check'
-                }
+		       }}
       /* stage('mail'){
 
          mail body: 'project build successful',
